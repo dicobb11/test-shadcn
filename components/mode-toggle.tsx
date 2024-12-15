@@ -11,6 +11,24 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+const ThemeOptions = [
+  {
+    id: 1,
+    value: "light",
+  },
+  {
+    id: 2,
+    value: "dark",
+  },
+  {
+    id: 3,
+    value: "system",
+  },
+  {
+    id: 4,
+    value: "red",
+  },
+];
 
 export function ModeToggle() {
   const { setTheme, theme } = useTheme();
@@ -26,24 +44,16 @@ export function ModeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem
-          onClick={() => setTheme("light")}
-          style={{ backgroundColor: theme === "light" ? "purple" : undefined }}
-        >
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => setTheme("dark")}
-          style={{ backgroundColor: theme === "dark" ? "cyan" : undefined }}
-        >
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => setTheme("system")}
-          style={{ backgroundColor: theme === "system" ? "pink" : undefined }}
-        >
-          System
-        </DropdownMenuItem>
+        {ThemeOptions.map((option) => (
+          <DropdownMenuItem
+            onClick={() => setTheme(option.value)}
+            style={{
+              backgroundColor: theme === option.value ? "yellow" : undefined,
+            }}
+          >
+            {option.value}
+          </DropdownMenuItem>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );
